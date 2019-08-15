@@ -7,8 +7,8 @@ This data consists of two participant groups: traumatic brain injury (TBI) patie
 
 This analysis focuses on changes in FC due to stimulation; specifically, it will us a PPI to determine the changes in FC, and how the parameters of stimulation (brain state, stimulation polarity, and WM structure) influence these changes. 
 
-## Step 1: Where do I begin? 
-*Creating the masks* 
+## Step 1: Where do I begin?  
+*Creating the masks*  
 Your first step is to determine your regions of interest (ROI) that you'll use as seed regions to interrogate the FC. Since I am interested in changes in FC between nodes in two networks, the salience network (SN) and default mode network (DMN), I use the following four ROIs created from the MNI152 2mm standard template:   
 
 1. SN nodes  
@@ -20,20 +20,20 @@ b. ventral medial prefrontal cortex (vmPFC)
 
 We can see them stored in their own folder as nifti files:  
     
-        [dk818@login-4 PPI]$ dk818cd ROIs/  
-        [dk818@login-4 PPI]$ ls  
-        dACC.nii.gz  PCCprecu.nii.gz  rIFG_F8.nii.gz  vmPFC.nii.gz
+      [dk818@login-4 PPI]$ dk818cd ROIs/  
+      [dk818@login-4 PPI]$ ls  
+      dACC.nii.gz  PCCprecu.nii.gz  rIFG_F8.nii.gz  vmPFC.nii.gz
 
 ## Step 2: Where am I?
 *Changing masks to participant space*  
 Next, we'll want to change those masks from standard space to participant, or native, space. Make sure the mask is the same dimensions as your participant space. Using the same command, you can shift the mask to the participant space, where the participant's clean nifti is your reference, then binarize it to get a clean mask.  
             
-         flirt -in dACC.nii.gz -ref /apps/fsl/5.0.10/fsl/data/standard/MNI152_T1_2mm_brain.nii.gz -applyxfm -usesqform -out dACC.nii.gz
-         flirt -in dACC.nii.gz -ref CREST1_CRTac1.nii.gz -applyxfm -usesqform -out CREST1_CRTac1_dACC.nii.gz
-         CREST1_CRTac1_dACC.nii.gz -bin bin_CREST1_CRTac1.nii.gz
+       flirt -in dACC.nii.gz -ref /apps/fsl/5.0.10/fsl/data/standard/MNI152_T1_2mm_brain.nii.gz -applyxfm -usesqform -out dACC.nii.gz
+       flirt -in dACC.nii.gz -ref CREST1_CRTac1.nii.gz -applyxfm -usesqform -out CREST1_CRTac1_dACC.nii.gz
+       CREST1_CRTac1_dACC.nii.gz -bin bin_CREST1_CRTac1.nii.gz
 Now you have a mask in the participant's space. Take a look at it and see how your new mask fits vs if you used the standard mask in participant space:  
   
-          fslview_depreciated CREST1_CRTac1.nii.gz
+        fslview_depreciated CREST1_CRTac1.nii.gz
  This is particularly easy to see in TBI patients, as their physiology is usually worse than HC. 
  
  ## Step 3: I know where I am. What's going on here?  
