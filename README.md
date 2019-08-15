@@ -1,4 +1,4 @@
-# PPI-My-oh-My
+# PPI: My, oh my
 This is a step-by-step guide for how to run a psychophysiological interaction (PPI) using FSL to determine changes in functional connectivity (FC). 
 
 ## Background on the study and data: 
