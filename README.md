@@ -26,7 +26,7 @@ We can see them stored in their own folder as nifti files:
 
 ## Step 2: Where am I?
 *Changing masks to participant space*  
-Next, we'll want to change those masks from standard space to participant, or native, space. Make sure the mask is the same dimensions as your participant space. Using the same command, you can shift the mask to the participant space, where the participant's clean nifti is your reference, then binarize it to get a clean mask.  
+Next, we'll want to change the masks from standard space to participant, or native, space. Make sure the mask and nifti files are in the same dimensions; I put everything in 2mm voxels. Using the same command, you can shift the mask to the participant space, where the participant's clean nifti is your reference, then binarize it to get a clean mask.  
             
        flirt -in dACC.nii.gz -ref /apps/fsl/5.0.10/fsl/data/standard/MNI152_T1_2mm_brain.nii.gz -applyxfm -usesqform -out dACC.nii.gz
        flirt -in dACC.nii.gz -ref CREST1_CRTac1.nii.gz -applyxfm -usesqform -out CREST1_CRTac1_dACC.nii.gz
